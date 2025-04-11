@@ -1,0 +1,188 @@
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/inter.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: #000000;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2rem 25rem;
+  margin-bottom: 7.5rem; /* remove later */
+}
+.header-title {
+  font-size: 1.75rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.contact-me-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.5rem 1.25rem;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+
+  font-size: 1.125rem;
+  font-weight: medium;
+  color: #ffffff;
+}
+
+.contact-me-container:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.background-grid-container > img {
+  position: absolute;
+  z-index: -1;
+  top: 40rem;
+}
+
+main {
+  padding: 2rem 25rem;
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  gap: 3.125rem;
+  margin-bottom: 7.5rem; /* remove later */
+}
+
+.hero-image-container > img {
+  border-radius: 100%;
+  max-width: 7.5rem;
+  max-height: 7.5rem;
+
+  border: 4px inset rgba(0, 0, 0, 0.25);
+}
+
+.hero-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hero-text-container > p:nth-child(1) {
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.hero-text-container > p:nth-child(2) {
+  font-size: 1.125rem;
+  color: #ffffff;
+  font-weight: medium;
+}
+
+.technology-cards-container {
+  display: flex;
+  gap: 5rem;
+  margin-bottom: 4rem; /* remove later */
+}
+
+.technology-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.75rem;
+
+  padding: 2.125rem 2.75rem 3.125rem;
+
+  text-align: center;
+
+  border: 2px inset rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+
+  background-color: #000000;
+}
+
+.technology-card-title {
+  font-size: 1.625rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.technology-card > img {
+  margin-top: 1.125rem;
+}
+
+.technology-card-description {
+  font-size: 1rem;
+  color: #eeeeee;
+}
+
+.technology-card:hover {
+  /* revise this later */
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.project-cards-container {
+  display: flex;
+  gap: 4.75rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+
+  background-color: #000000;
+
+  border: 2px inset rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+
+  margin-bottom: 7.5rem; /* remove later */
+  padding: 2.25rem 2.5rem;
+}
+
+.project-card-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-card-title-container > p:nth-child(1) {
+  font-size: 1.375rem;
+  color: #ffffff;
+  font-weight: medium;
+}
+
+.project-card-icons-container {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.project-card:hover {
+  /* revise this later */
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+  cursor: pointer;
+}
