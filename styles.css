@@ -81,6 +81,8 @@ main {
 .introduction-section-container p:nth-child(2) {
   font-size: 0.663rem;
   font-weight: normal;
+
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .technology-card-container {
@@ -110,6 +112,12 @@ main {
   background-color: black;
 
   border-radius: 0.125rem;
+
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+.technology-card > p {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .project-card-container {
@@ -132,6 +140,9 @@ main {
   background-color: black;
 
   border-radius: 0.125rem;
+
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .project-card-header {
@@ -142,6 +153,7 @@ main {
 
 .project-card-description {
   font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .background-grid-container > img {
