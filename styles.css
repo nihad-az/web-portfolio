@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Inter";
-  src: url("./fonts/inter.ttf") format("truetype");
+  src: url("./src/fonts/inter.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -8,6 +8,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -25,164 +26,127 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  padding: 2rem 25rem;
-  margin-bottom: 7.5rem; /* remove later */
+  padding: 1.5rem 3rem;
+
+  margin-bottom: 1.375rem;
 }
-.header-title {
-  font-size: 1.75rem;
-  color: #ffffff;
+
+.profile-picture-container > img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+}
+
+header > p {
   font-weight: bold;
+  font-size: 0.875rem;
+
+  text-align: center;
 }
 
-.contact-me-container {
+.contact-icon-container {
+  width: 2rem;
+  height: 2rem;
+
+  border-radius: 100%;
+
+  background-color: rgba(255, 255, 255, 0.05);
+
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-
-  padding: 0.5rem 1.25rem;
-  border: 2px solid #ffffff;
-  border-radius: 6px;
-
-  font-size: 1.125rem;
-  font-weight: medium;
-  color: #ffffff;
-}
-
-.contact-me-container:hover {
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
-.background-grid-container > img {
-  position: absolute;
-  z-index: -1;
-  top: 40rem;
 }
 
 main {
-  padding: 2rem 25rem;
-}
-
-.hero-section {
-  display: flex;
-  align-items: center;
-  gap: 3.125rem;
-  margin-bottom: 7.5rem; /* remove later */
-}
-
-.hero-image-container > img {
-  border-radius: 100%;
-  max-width: 7.5rem;
-  max-height: 7.5rem;
-
-  border: 4px inset rgba(0, 0, 0, 0.25);
-}
-
-.hero-text-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
+  align-items: center;
+
+  padding: 0 3rem;
 }
 
-.hero-text-container > p:nth-child(1) {
-  font-size: 1.5rem;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.hero-text-container > p:nth-child(2) {
-  font-size: 1.125rem;
-  color: #ffffff;
-  font-weight: medium;
-}
-
-.technology-cards-container {
+.introduction-section-container {
   display: flex;
-  gap: 5rem;
-  margin-bottom: 4rem; /* remove later */
+  flex-direction: column;
+  gap: 0.625rem;
+
+  margin-bottom: 1.438rem;
+}
+
+.introduction-section-container p:nth-child(1) {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.introduction-section-container p:nth-child(2) {
+  font-size: 0.563rem;
+  font-weight: normal;
+}
+
+.technology-card-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.563rem;
+
+  font-weight: 500;
+  font-size: 0.625rem;
+
+  margin-bottom: 1.5rem;
 }
 
 .technology-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  width: 88px;
+  height: 85px;
+
+  padding: 1.188rem 1.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background-color: black;
+
+  border-radius: 0.125rem;
+}
+
+.project-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.563rem;
   justify-content: center;
   align-items: center;
-  gap: 1.75rem;
 
-  padding: 2.125rem 2.75rem 3.125rem;
-
-  text-align: center;
-
-  border: 2px inset rgba(0, 0, 0, 0.15);
-  border-radius: 6px;
-
-  background-color: #000000;
-}
-
-.technology-card-title {
-  font-size: 1.625rem;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.technology-card > img {
-  margin-top: 1.125rem;
-}
-
-.technology-card-description {
-  font-size: 1rem;
-  color: #eeeeee;
-}
-
-.technology-card:hover {
-  /* revise this later */
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
-.project-cards-container {
-  display: flex;
-  gap: 4.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  gap: 1.875rem;
+  gap: 0.375rem;
 
-  background-color: #000000;
+  padding: 0.875rem;
 
-  border: 2px inset rgba(0, 0, 0, 0.15);
-  border-radius: 6px;
+  border: solid 1px rgba(255, 255, 255, 0.1);
 
-  margin-bottom: 7.5rem; /* remove later */
-  padding: 2.25rem 2.5rem;
+  background-color: black;
+
+  border-radius: 0.125rem;
 }
 
-.project-card-title-container {
+.project-card-header {
   display: flex;
   justify-content: space-between;
+  font-size: 0.625rem;
 }
 
-.project-card-title-container > p:nth-child(1) {
-  font-size: 1.375rem;
-  color: #ffffff;
-  font-weight: medium;
+.project-card-description {
+  font-size: 0.5rem;
 }
 
-.project-card-icons-container {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.project-card:hover {
-  /* revise this later */
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
-  cursor: pointer;
+.background-grid-container > img {
+  position: absolute;
+  z-index: -1;
 }
