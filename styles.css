@@ -26,7 +26,7 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 1.5rem;
 
   margin-bottom: 1.375rem;
 }
@@ -39,7 +39,7 @@ header {
 
 header > p {
   font-weight: bold;
-  font-size: 0.875rem;
+  font-size: 1rem;
 
   text-align: center;
 }
@@ -50,7 +50,7 @@ header > p {
 
   border-radius: 100%;
 
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
 
   display: flex;
   justify-content: center;
@@ -62,7 +62,7 @@ main {
   flex-direction: column;
   align-items: center;
 
-  padding: 0 3rem;
+  padding: 0 1.5rem;
 }
 
 .introduction-section-container {
@@ -74,22 +74,23 @@ main {
 }
 
 .introduction-section-container p:nth-child(1) {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
 .introduction-section-container p:nth-child(2) {
-  font-size: 0.563rem;
+  font-size: 0.663rem;
   font-weight: normal;
 }
 
 .technology-card-container {
   display: flex;
-  justify-content: center;
-  gap: 0.563rem;
+  justify-content: space-between;
 
   font-weight: 500;
-  font-size: 0.625rem;
+  font-size: 0.725rem;
+
+  width: 100%;
 
   margin-bottom: 1.5rem;
 }
@@ -100,9 +101,6 @@ main {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-
-  width: 88px;
-  height: 85px;
 
   padding: 1.188rem 1.875rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -118,8 +116,6 @@ main {
   gap: 0.563rem;
   justify-content: center;
   align-items: center;
-
-  margin-bottom: 1.5rem;
 }
 
 .project-card {
@@ -139,11 +135,11 @@ main {
 .project-card-header {
   display: flex;
   justify-content: space-between;
-  font-size: 0.625rem;
+  font-size: 0.725rem;
 }
 
 .project-card-description {
-  font-size: 0.5rem;
+  font-size: 0.6rem;
 }
 
 .background-grid-container > img {
