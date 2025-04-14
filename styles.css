@@ -155,8 +155,31 @@ main {
   font-size: 0.6rem;
   color: rgba(255, 255, 255, 0.8);
 }
+.background-grid-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+}
 
 .background-grid-container > img {
-  position: absolute;
-  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+
+  animation: spin 10s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes spin {
+  0% {
+    transform: scaleX(0.5);
+  }
+  50% {
+    transform: scaleX(1.5);
+  }
+  100% {
+    transform: scaleX(0.5);
+  }
 }
