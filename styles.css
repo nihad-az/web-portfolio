@@ -167,7 +167,7 @@ main {
   height: 100vh;
   object-fit: cover;
 
-  animation: spin 10s ease-in-out infinite;
+  animation: spin 20s ease-in-out infinite;
   transform-origin: center;
   will-change: transform;
 }
