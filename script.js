@@ -9,7 +9,6 @@ pfp.addEventListener("click", function () {
   div.style.height = "100%";
   div.style.top = "0";
   div.style.left = "0";
-  div.classList.add("pfp-overlay");
 
   const img = document.createElement("img");
   img.src = pfp.src;

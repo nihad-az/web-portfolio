@@ -27,8 +27,10 @@ header {
   align-items: center;
 
   padding: 1.5rem 1.75rem;
+}
 
-  margin-bottom: 1.375rem;
+.profile-picture-container {
+  cursor: pointer;
 }
 
 .profile-picture-container > img {
