@@ -89,12 +89,12 @@ main {
 
 .technology-card-container {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 
+  justify-content: center;
   font-weight: 500;
   font-size: 0.725rem;
-
-  width: 100%;
 
   margin-bottom: 1.5rem;
 }
@@ -106,7 +106,8 @@ main {
   justify-content: center;
   gap: 0.75rem;
 
-  width: calc(100% / 3 - 0.3rem);
+  flex: 1 1 calc((100% - 1rem) / 3);
+  max-width: calc((100% - 1rem) / 3);
 
   padding: 1.188rem 1.875rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
