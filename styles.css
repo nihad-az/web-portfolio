@@ -200,7 +200,7 @@ main {
   height: 100%;
   object-fit: cover;
 
-  animation: spin 20s ease-in-out infinite;
+  /* animation: spin 20s ease-in-out infinite; */
   transform-origin: center;
 }
 
@@ -221,7 +221,7 @@ main {
     font-size: 19px;
   }
   :root {
-    --global--horizontal--padding: 2.5rem;
+    --global--horizontal--padding: 3rem;
     --global--vertical--padding: 2rem;
   }
   header {
@@ -237,7 +237,7 @@ main {
     font-size: 22px;
   }
   :root {
-    --global--horizontal--padding: 3rem;
+    --global--horizontal--padding: 6rem;
     --global--vertical--padding: 2rem;
   }
   header {
@@ -253,7 +253,7 @@ main {
     font-size: 24px;
   }
   :root {
-    --global--horizontal--padding: 5rem;
+    --global--horizontal--padding: 10rem;
     --global--vertical--padding: 2rem;
   }
   header {
@@ -266,7 +266,7 @@ main {
 
 @media (min-width: 1200px) and (max-width: 1599px) {
   :root {
-    --global--horizontal--padding: 7.5rem;
+    --global--horizontal--padding: 15rem;
     --global--vertical--padding: 2rem;
   }
   header {
