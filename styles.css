@@ -298,7 +298,7 @@ main {
 
 @media (min-width: 2000px) {
   :root {
-    --global--horizontal--padding: 20rem;
+    --global--horizontal--padding: 30rem;
     --global--vertical--padding: 2rem;
   }
   html {
