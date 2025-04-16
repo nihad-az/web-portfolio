@@ -43,6 +43,11 @@ header {
   border-radius: 100%;
 }
 
+.profile-picture-container > img:hover {
+  transition: 0.1s;
+  transform: scale(1.05);
+}
+
 header > p {
   font-weight: bold;
   font-size: 1rem;
@@ -66,6 +71,11 @@ header > p {
 .contact-icon-container > a > img {
   width: 0.813rem;
   height: 0.563rem;
+}
+
+.contact-icon-container:hover {
+  transition: 0.1s;
+  transform: scale(1.05);
 }
 
 main {
@@ -189,6 +199,11 @@ main {
   height: 0.625rem;
 }
 
+.project-card-header > a > img:hover {
+  transition: 0.1s;
+  transform: scale(1.05);
+}
+
 .project-card-description {
   font-size: 0.6rem;
   color: rgba(255, 255, 255, 0.8);
@@ -202,18 +217,15 @@ main {
   background-image: url("./src/images/background-grid.svg");
   background-repeat: repeat;
   background-size: 100% 100%;
-  animation: background-stretch 20s ease-in-out infinite;
+  animation: background-stretch 20s ease-in-out forwards;
   will-change: background-size;
 }
 @keyframes background-stretch {
   0% {
     transform: scaleX(0.5);
   }
-  50% {
-    transform: scaleX(4);
-  }
   100% {
-    transform: scaleX(0.5);
+    transform: scaleX(4);
   }
 }
 
