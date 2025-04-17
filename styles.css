@@ -218,16 +218,7 @@ main {
   background-image: url("./src/images/background-grid.svg");
   background-repeat: repeat;
   background-size: 100% 100%;
-  animation: background-stretch 20s ease-in-out forwards;
-  will-change: background-size;
-}
-@keyframes background-stretch {
-  0% {
-    transform: scaleX(0.5);
-  }
-  100% {
-    transform: scaleX(4);
-  }
+  transform: scaleX(4);
 }
 
 @media (min-width: 400px) and (max-width: 599px) {
