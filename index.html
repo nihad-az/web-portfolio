@@ -7,9 +7,18 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="./src/images/favicon.ico" />
     <script src="script.js" defer></script>
+    <script type="importmap" defer>
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="grid.js" defer></script>
   </head>
   <body>
-    <div class="background-grid-container"></div>
+    <canvas id="bg"></canvas>
     <header>
       <div class="profile-picture-container">
         <img

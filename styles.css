@@ -209,7 +209,8 @@ main {
   font-size: 0.6rem;
   color: rgba(255, 255, 255, 0.8);
 }
-.background-grid-container {
+
+/* .background-grid-container {
   position: fixed;
   inset: 0;
   z-index: -99999;
@@ -219,6 +220,15 @@ main {
   background-repeat: repeat;
   background-size: 100% 100%;
   transform: scaleX(4);
+}  */
+
+canvas#bg {
+  position: fixed; /* Ensure it stays in the background */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Place it behind other elements */
 }
 
 @media (min-width: 400px) and (max-width: 599px) {
