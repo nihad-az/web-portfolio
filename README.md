@@ -1,4 +1,4 @@
-# Nihad.az — My Developer Portfolio 💻🚀
+# Nihad.az — My Developer Portfolio
 
 Welcome to my personal portfolio site!
 
@@ -6,10 +6,10 @@ Welcome to my personal portfolio site!
 
 This site showcases my work as a front-end web developer. Built with HTML, CSS, JavaScript, and React — it includes:
 
-- ✨ A 3D animated background
-- 📬 Contact section with my email
-- 🛠️ Tech stack overview
-- 📁 Projects, including CarStat and more
+- A 3D animated background
+- Contact section with my email
+- Tech stack overview
+- Projects, including CarStat and more
 
 ## Tech Stack
 
@@ -17,9 +17,3 @@ This site showcases my work as a front-end web developer. Built with HTML, CSS, 
 - TypeScript
 - Custom CSS (no frameworks)
 - Hosted via Cloudflare
-
-## Setup
-
-```bash
-npm install
-```
