@@ -1,0 +1,19 @@
+.introduction-section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  margin-bottom: 1.438rem;
+}
+
+.introduction-section-container p:nth-child(1) {
+  font-size: 0.8rem;
+  font-weight: bolder;
+}
+
+.introduction-section-container p:nth-child(2) {
+  font-size: 0.663rem;
+  font-weight: 500;
+
+  color: rgba(255, 255, 255, 0.8);
+}
