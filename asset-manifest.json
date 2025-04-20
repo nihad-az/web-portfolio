@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fea700c4.css",
+    "main.js": "/static/js/main.7ff818f6.js",
+    "static/media/inter.ttf": "/static/media/inter.e05c5f3d1fa6a3893d84.ttf",
+    "static/media/profile-picture.jpeg": "/static/media/profile-picture.ca418c14b759891f7482.jpeg",
+    "static/media/react-icon.svg": "/static/media/react-icon.8a0cae9adbad6cc3b56cf0ddec061a40.svg",
+    "static/media/nextjs-icon.svg": "/static/media/nextjs-icon.462d727a91c9d6f6ba9708cd08bec107.svg",
+    "static/media/javascript-icon.svg": "/static/media/javascript-icon.e326c05af2995d0edde0395cd3caa18f.svg",
+    "static/media/typescript-icon.svg": "/static/media/typescript-icon.da26a43ec148b30e2831e31e9d20ac76.svg",
+    "static/media/html-icon.svg": "/static/media/html-icon.b030c17165e0cd8accafd6adcd03206b.svg",
+    "static/media/css-icon.svg": "/static/media/css-icon.f0824542e137780d9d6a88411d7abb37.svg",
+    "static/media/github-icon.svg": "/static/media/github-icon.358590c523598800f8e245bb3cc43330.svg",
+    "index.html": "/index.html",
+    "static/media/mail-icon.svg": "/static/media/mail-icon.fad37ede6da90bad3aba3b2d9b8c8945.svg",
+    "main.fea700c4.css.map": "/static/css/main.fea700c4.css.map",
+    "main.7ff818f6.js.map": "/static/js/main.7ff818f6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fea700c4.css",
+    "static/js/main.7ff818f6.js"
+  ]
+}
