@@ -1,0 +1,52 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: var(--global--vertical--padding) var(--global--horizontal--padding);
+}
+
+.profile-picture-container {
+  cursor: pointer;
+}
+
+.profile-picture-container > img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+}
+
+.profile-picture-container > img:hover {
+  transition: 0.1s;
+  transform: scale(1.05);
+}
+
+header > p {
+  font-weight: bolder;
+  font-size: 1rem;
+
+  text-align: center;
+}
+
+.contact-icon-container {
+  width: 2rem;
+  height: 2rem;
+
+  border-radius: 100%;
+
+  background-color: rgba(255, 255, 255, 0.1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-icon-container > a > img {
+  width: 0.813rem;
+  height: 0.563rem;
+}
+
+.contact-icon-container:hover {
+  transition: 0.1s;
+  transform: scale(1.05);
+}

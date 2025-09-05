@@ -1,0 +1,63 @@
+.technology-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.725rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.technology-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  flex: 1 1 calc((100% - 1rem) / 3);
+  max-width: calc((100% - 1rem) / 3);
+
+  padding: 1.188rem 1.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background-color: black;
+
+  border-radius: 0.25rem;
+
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.technology-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 18px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.technology-card > p {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.3px; /* slightly sharper text */
+}
+
+#html-icon {
+  width: 1.75rem;
+  height: 2.063rem;
+}
+#css-icon {
+  width: 1.813rem;
+  height: 2rem;
+}
+#javascript-icon {
+  width: 1.813rem;
+  height: 1.813rem;
+}
+#typescript-icon,
+#react-icon,
+#nextjs-icon {
+  width: 2.063rem;
+  height: 2.063rem;
+}

@@ -1,0 +1,21 @@
+---
+import "./technology-cards.css";
+
+const techCards = [
+  { id: "html-icon", title: "HTML", src: "/icons/html-icon.svg", alt: "HTML" },
+  { id: "css-icon", title: "CSS", src: "/icons/css-icon.svg", alt: "CSS" },
+  { id: "javascript-icon", title: "JavaScript", src: "/icons/javascript-icon.svg", alt: "JavaScript" },
+  { id: "react-icon", title: "React", src: "/icons/react-icon.svg", alt: "React" },
+  { id: "typescript-icon", title: "TypeScript", src: "/icons/typescript-icon.svg", alt: "TypeScript" },
+  { id: "nextjs-icon", title: "Next.js", src: "/icons/nextjs-icon.svg", alt: "Next.js" },
+];
+---
+
+<section id="technologies" class="technology-card-container">
+  {techCards.map((card) => (
+    <div class="technology-card">
+      <p>{card.title}</p>
+      <img src={card.src} alt={card.alt} loading="eager" id={card.id}/>
+    </div>
+  ))}
+</section>

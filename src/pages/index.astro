@@ -1,16 +1,53 @@
 ---
-
+import "../global.css";
+import BgGrid from "../components/bgGrid/BgGrid.tsx";
+import Header from "../components/header/Header.astro";
+import Introduction from "../components/introduction/Introduction.astro";
+import TechnologyCards from "../components/technology/TechnologyCards.astro"
+import Project from "../components/project/Project.astro"
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nihad Ibrahimli – Front-end Developer</title>
+    <meta name="description" content="Portfolio of Nihad Ibrahimli — Front-end web developer. Explore projects, skills, and technologies." />
+    <meta name="keywords" content="Nihad Ibrahimli, front-end developer, portfolio, React, JavaScript, web development" />
+    <meta name="author" content="Nihad Ibrahimli" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Nihad Ibrahimli – Front-end Developer" />
+    <meta property="og:description" content="Portfolio of Nihad Ibrahimli, showcasing skills and projects in front-end development." />
+    <meta property="og:image" content="/images/profile-picture.jpeg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nihad.az" />
+
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nihad Ibrahimli",
+      "url": "https://nihad.az",
+      "sameAs": [
+        "https://www.linkedin.com/in/nihad",
+        "https://github.com/nihad-az"
+      ],
+      "jobTitle": "Front-end Web Developer"
+    }
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+
+  <body>
+    <BgGrid client:idle />
+    <Header />
+    <main>
+        <Introduction />
+		    <TechnologyCards />
+        <Project />
+    </main>
+  </body>
 </html>

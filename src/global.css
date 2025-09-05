@@ -1,0 +1,135 @@
+:root {
+  --global--horizontal--padding: clamp(1.75rem, 3vw, 30rem);
+  --global--vertical--padding: clamp(1.5rem, 1vw, 2rem);
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/inter.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: clamp(16px, 1.5vw, 32px);
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+}
+
+header {
+  padding: var(--global--vertical--padding) var(--global--horizontal--padding);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--global--horizontal--padding);
+}
+
+@media (min-width: 400px) and (max-width: 599px) {
+  html {
+    font-size: 19px;
+  }
+  :root {
+    --global--horizontal--padding: 3rem;
+    --global--vertical--padding: 2rem;
+  }
+  header {
+    padding: var(--global--vertical--padding) var(--global--horizontal--padding);
+  }
+  main {
+    padding: 0 var(--global--horizontal--padding);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  html {
+    font-size: 22px;
+  }
+  :root {
+    --global--horizontal--padding: 6rem;
+    --global--vertical--padding: 2rem;
+  }
+  header {
+    padding: var(--global--vertical--padding) var(--global--horizontal--padding);
+  }
+  main {
+    padding: 0 var(--global--horizontal--padding);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  html {
+    font-size: 24px;
+  }
+  :root {
+    --global--horizontal--padding: 10rem;
+    --global--vertical--padding: 2rem;
+  }
+  header {
+    padding: var(--global--vertical--padding) var(--global--horizontal--padding);
+  }
+  main {
+    padding: 0 var(--global--horizontal--padding);
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  :root {
+    --global--horizontal--padding: 15rem;
+    --global--vertical--padding: 2rem;
+  }
+  header {
+    padding: var(--global--vertical--padding) var(--global--horizontal--padding);
+  }
+  main {
+    padding: 0 var(--global--horizontal--padding);
+  }
+  html {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1600px) and (max-width: 1999px) {
+  :root {
+    --global--horizontal--padding: 15rem;
+    --global--vertical--padding: 2rem;
+  }
+  html {
+    font-size: 32px;
+  }
+  header {
+    padding: var(--global--vertical--padding) var(--global--horizontal--padding);
+  }
+  main {
+    padding: 0 var(--global--horizontal--padding);
+  }
+}
+
+@media (min-width: 2000px) {
+  :root {
+    --global--horizontal--padding: 30rem;
+    --global--vertical--padding: 2rem;
+  }
+  html {
+    font-size: 30px;
+  }
+  header {
+    padding: var(--global--vertical--padding) var(--global--horizontal--padding);
+  }
+  main {
+    padding: 0 var(--global--horizontal--padding);
+  }
+}
