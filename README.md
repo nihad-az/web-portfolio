@@ -1,43 +1,51 @@
-# Astro Starter Kit: Minimal
+# 🌐 Nihad Ibrahimli — Portfolio (nihad.az)
 
-```sh
-npm create astro@latest -- --template minimal
-```
+This repository contains the source code for my personal portfolio website [nihad.az](https://nihad.az), built with **Astro** and **TypeScript**.  
+The goal of this project is to present my work, highlight the projects I’ve built, and showcase my journey as a front-end developer.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## ✨ Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- ⚡ **Astro + TypeScript** — Blazing-fast static site with modern tooling.
+- 🎨 **Tailwind CSS** — Utility-first styling for a responsive, clean design.
+- 🔍 **SEO Optimized** — Proper metadata, semantic HTML, and Next-gen practices.
+- 📱 **Responsive Design** — Works seamlessly across mobile, tablet, and desktop.
+- 🖼 **Projects Showcase** — Includes interactive project cards (CarStat, Venturas, SteamScope, and more).
+- 🔒 **Privacy-first Fonts & Hosting** — Self-hosted fonts and Cloudflare Pages deployment.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+---
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🚀 Projects Highlighted
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- **CarStat** — Vehicle comparison web app (Next.js, TypeScript, Tailwind, MongoDB).
+- **Venturas** — Digital board game adaptation (Next.js, MongoDB, Nightcall Studio).
+- **SteamScope** — Steam price tracker & spending analyzer (Next.js, TypeScript, Tailwind, Nightcall Studio).
 
-Any static assets, like images, can be placed in the `public/` directory.
+---
 
-## 🧞 Commands
+## 🛠 Tech Stack
 
-All commands are run from the root of the project, from a terminal:
+- **Frontend:** Astro, React, TypeScript, Tailwind CSS
+- **Backend (for future projects):** Node.js, MongoDB
+- **Deployment:** Cloudflare Pages
+- **Version Control:** Git + GitHub
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
+## 📌 Roadmap
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Add more projects as they are developed.
+- Expand blog section (technical writeups + project breakdowns).
+- Explore backend integration for live project demos.
+
+---
+
+## 📫 Contact
+
+- Portfolio: [https://nihad.az](https://nihad.az)
+- GitHub: [https://github.com/nihad-az](https://github.com/nihad-az)
+
+---
+
+💡 _This portfolio is an evolving project that grows as I do — both as a developer and as a creator._
