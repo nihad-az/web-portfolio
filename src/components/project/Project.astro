@@ -44,7 +44,13 @@ const projectCards = [
   {projectCards.map((card) => (
     <div class="project-card">
       <div class="project-card-header">
-        <p>{card.title}</p>
+        {card.title === "CarStat" ? (
+          <a href="https://carstat.net/" target="_blank" rel="noopener noreferrer" class="project-title-link">
+            <p>{card.title}</p>
+          </a>
+        ) : (
+          <p>{card.title}</p>
+        )}
         <a href={card.link} target="_blank" rel="noopener noreferrer">
           <img
             src={card.image}
