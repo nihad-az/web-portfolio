@@ -5,7 +5,9 @@ canvas#bg {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  /* Add these to prevent mobile interactions */
+
+  /* Disable all interactions */
+  pointer-events: none;
   touch-action: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -13,6 +15,15 @@ canvas#bg {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  /* Prevent elastic scrolling on the canvas */
+
+  /* Prevent scrolling effects */
   overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
+
+  /* Prevent highlighting and context menu */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
 }
