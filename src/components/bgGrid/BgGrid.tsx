@@ -28,21 +28,23 @@ const Grid: React.FC = () => {
     let clock: THREE.Clock;
     let gridGroup: THREE.Group;
 
-    function init() {
+    const init = () => {
       if (!mountRef.current) return;
 
+      // Scene
       scene = new THREE.Scene();
       scene.fog = new THREE.Fog(FOG_COLOR, FOG_NEAR, FOG_FAR);
 
-      const aspect = window.innerWidth / window.innerHeight;
+      // Camera
       camera = new THREE.PerspectiveCamera(
         CAMERA_FOV,
-        aspect,
+        window.innerWidth / window.innerHeight,
         CAMERA_NEAR,
         CAMERA_FAR
       );
       camera.position.z = CAMERA_INITIAL_Z;
 
+      // Renderer
       renderer = new THREE.WebGLRenderer({
         antialias: true,
         canvas: mountRef.current,
@@ -50,6 +52,7 @@ const Grid: React.FC = () => {
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
 
+      // Grid
       const gridHelper = new THREE.GridHelper(
         GRID_SIZE,
         GRID_DIVISIONS,
@@ -64,19 +67,21 @@ const Grid: React.FC = () => {
       gridGroup.add(gridHelper);
       scene.add(gridGroup);
 
+      // Clock
       clock = new THREE.Clock();
 
+      // Resize handler
       window.addEventListener("resize", onWindowResize, false);
-    }
+    };
 
-    function onWindowResize() {
+    const onWindowResize = () => {
       if (!camera || !renderer) return;
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-    }
+    };
 
-    function animate() {
+    const animate = () => {
       if (!renderer || !scene || !camera || !clock || !gridGroup) return;
 
       requestAnimationFrame(animate);
@@ -84,11 +89,10 @@ const Grid: React.FC = () => {
       const elapsedTime = clock.getElapsedTime();
       const currentAngle =
         MAX_ROTATION_ANGLE * Math.sin(elapsedTime * ROTATION_SPEED_FACTOR);
-
       gridGroup.rotation.y = currentAngle;
 
       renderer.render(scene, camera);
-    }
+    };
 
     init();
     animate();
