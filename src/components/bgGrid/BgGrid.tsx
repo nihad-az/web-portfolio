@@ -18,10 +18,14 @@ const GRID_OPACITY = 1;
 const ROTATION_SPEED_FACTOR = 0.15;
 const MAX_ROTATION_ANGLE = Math.PI * (65 / 180);
 
+const MIN_WIDTH_FOR_GRID = 768; // skip grid for smaller screens
+
 const Grid: React.FC = () => {
   const mountRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
+    if (window.innerWidth < MIN_WIDTH_FOR_GRID) return; // skip mobile
+
     let scene: THREE.Scene;
     let camera: THREE.PerspectiveCamera;
     let renderer: THREE.WebGLRenderer;
@@ -49,6 +53,8 @@ const Grid: React.FC = () => {
       });
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.domElement.style.width = "100%";
+      renderer.domElement.style.height = "100%";
 
       const gridHelper = new THREE.GridHelper(
         GRID_SIZE,
@@ -71,9 +77,13 @@ const Grid: React.FC = () => {
 
     function onWindowResize() {
       if (!camera || !renderer) return;
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(width, height);
+      renderer.domElement.style.width = "100%";
+      renderer.domElement.style.height = "100%";
     }
 
     function animate() {
