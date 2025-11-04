@@ -4,7 +4,6 @@
   gap: 0.563rem;
   justify-content: center;
   align-items: center;
-
   margin-bottom: 2rem;
 }
 
@@ -12,23 +11,52 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
   padding: 0.875rem;
 
-  border: solid 1px rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 
-  background-color: black;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
 
-  border-radius: 0.125rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 8px 20px rgba(0, 0, 0, 0.4);
 
-  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.25);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+
+  transform: translateZ(0);
+  transition: box-shadow 0.35s ease, border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+.project-card:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 12px 25px rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.06)
+  );
 }
 
 .project-title-link {
-  text-decoration: none;
-  color: white;
   text-decoration: underline;
+  color: #fff;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.project-title-link:hover {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .project-card-header {
@@ -41,10 +69,10 @@
 .project-card-header > a > img {
   width: 0.625rem;
   height: 0.625rem;
+  transition: transform 0.15s ease;
 }
 
 .project-card-header > a > img:hover {
-  transition: 0.1s;
   transform: scale(1.05);
 }
 
