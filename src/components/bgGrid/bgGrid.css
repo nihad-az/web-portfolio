@@ -5,4 +5,14 @@ canvas#bg {
   width: 100vw;
   height: 100vh;
   z-index: -1;
+  /* Add these to prevent mobile interactions */
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Prevent elastic scrolling on the canvas */
+  overscroll-behavior: none;
 }

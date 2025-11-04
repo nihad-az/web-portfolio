@@ -3,13 +3,15 @@ import * as THREE from "three";
 import "./bgGrid.css";
 
 const FOG_COLOR = 0x000000;
+const FOG_NEAR = 20;
+const FOG_FAR = 100;
 const CAMERA_FOV = 75;
 const CAMERA_NEAR = 0.1;
 const CAMERA_FAR = 500;
 const CAMERA_INITIAL_Z = 10;
 
-const GRID_BASE_SIZE = 500;
-const GRID_BASE_DIVISIONS = 250;
+const GRID_SIZE = 500;
+const GRID_DIVISIONS = 250;
 const GRID_COLOR = 0x800080;
 const GRID_OPACITY = 1;
 
@@ -18,112 +20,108 @@ const MAX_ROTATION_ANGLE = Math.PI * (65 / 180);
 
 const Grid: React.FC = () => {
   const mountRef = useRef<HTMLCanvasElement | null>(null);
-  const requestRef = useRef<number | null>(null);
-  const sceneRef = useRef<THREE.Scene | null>(null);
-  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const gridGroupRef = useRef<THREE.Group | null>(null);
-  const clockRef = useRef<THREE.Clock | null>(null);
 
   useEffect(() => {
+    let scene: THREE.Scene;
+    let camera: THREE.PerspectiveCamera;
+    let renderer: THREE.WebGLRenderer;
+    let clock: THREE.Clock;
+    let gridGroup: THREE.Group;
+    let animationFrameId: number;
+
     const init = () => {
       if (!mountRef.current) return;
 
       // Scene
-      const scene = new THREE.Scene();
-      scene.fog = new THREE.Fog(FOG_COLOR, 20, 100);
-      sceneRef.current = scene;
+      scene = new THREE.Scene();
+      scene.fog = new THREE.Fog(FOG_COLOR, FOG_NEAR, FOG_FAR);
 
       // Camera
-      const camera = new THREE.PerspectiveCamera(
+      camera = new THREE.PerspectiveCamera(
         CAMERA_FOV,
         window.innerWidth / window.innerHeight,
         CAMERA_NEAR,
         CAMERA_FAR
       );
       camera.position.z = CAMERA_INITIAL_Z;
-      cameraRef.current = camera;
 
       // Renderer
-      const renderer = new THREE.WebGLRenderer({
+      renderer = new THREE.WebGLRenderer({
         antialias: true,
         canvas: mountRef.current,
+        // Preserve drawing buffer can help on some devices
+        preserveDrawingBuffer: false,
         powerPreference: "high-performance",
       });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for performance
       renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.domElement.style.width = "100%";
-      renderer.domElement.style.height = "100%";
-      rendererRef.current = renderer;
 
       // Grid
-      const gridGroup = new THREE.Group();
-      gridGroupRef.current = gridGroup;
-
-      const scaleFactor = Math.min(window.innerWidth / 1440, 1);
-      const gridSize = GRID_BASE_SIZE * scaleFactor;
-      const gridDivisions = Math.max(
-        Math.floor(GRID_BASE_DIVISIONS * scaleFactor),
-        50
-      );
-
       const gridHelper = new THREE.GridHelper(
-        gridSize,
-        gridDivisions,
+        GRID_SIZE,
+        GRID_DIVISIONS,
         GRID_COLOR,
         GRID_COLOR
       );
       (gridHelper.material as THREE.Material).opacity = GRID_OPACITY;
       (gridHelper.material as THREE.Material).transparent = true;
       gridHelper.rotation.x = Math.PI / 2;
-      gridGroup.add(gridHelper);
 
+      gridGroup = new THREE.Group();
+      gridGroup.add(gridHelper);
       scene.add(gridGroup);
 
       // Clock
-      clockRef.current = new THREE.Clock();
+      clock = new THREE.Clock();
+
+      // Resize handler
+      window.addEventListener("resize", onWindowResize, false);
+
+      // Prevent touch events from interfering
+      preventTouchInterference();
     };
 
-    const handleResize = () => {
-      const camera = cameraRef.current;
-      const renderer = rendererRef.current;
-      const gridGroup = gridGroupRef.current;
-      if (!camera || !renderer || !gridGroup) return;
+    const preventTouchInterference = () => {
+      if (!mountRef.current) return;
 
-      // Keep aspect ratio correct
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      const preventDefault = (e: Event) => {
+        e.preventDefault();
+      };
 
-      // Only scale grid by width (ignore height)
-      const scaleFactor = Math.min(window.innerWidth / 1440, 1);
-      const newGridSize = GRID_BASE_SIZE * scaleFactor;
+      // Prevent various touch interactions
+      const events = [
+        "touchstart",
+        "touchmove",
+        "touchend",
+        "touchcancel",
+        "gesturestart",
+        "gesturechange",
+        "gestureend",
+      ];
 
-      gridGroup.children.forEach((child) => {
-        if (child instanceof THREE.GridHelper) {
-          child.scale.set(
-            newGridSize / GRID_BASE_SIZE,
-            1,
-            newGridSize / GRID_BASE_SIZE
-          );
-        }
+      events.forEach((event) => {
+        mountRef.current?.addEventListener(event, preventDefault, {
+          passive: false,
+        });
       });
     };
 
+    const onWindowResize = () => {
+      if (!camera || !renderer) return;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
     const animate = () => {
-      requestRef.current = requestAnimationFrame(animate);
+      if (!renderer || !scene || !camera || !clock || !gridGroup) return;
 
-      const renderer = rendererRef.current;
-      const scene = sceneRef.current;
-      const camera = cameraRef.current;
-      const gridGroup = gridGroupRef.current;
-      const clock = clockRef.current;
+      animationFrameId = requestAnimationFrame(animate);
 
-      if (!renderer || !scene || !camera || !gridGroup || !clock) return;
-
-      const elapsed = clock.getElapsedTime();
-      gridGroup.rotation.y =
-        MAX_ROTATION_ANGLE * Math.sin(elapsed * ROTATION_SPEED_FACTOR);
+      const elapsedTime = clock.getElapsedTime();
+      const currentAngle =
+        MAX_ROTATION_ANGLE * Math.sin(elapsedTime * ROTATION_SPEED_FACTOR);
+      gridGroup.rotation.y = currentAngle;
 
       renderer.render(scene, camera);
     };
@@ -131,24 +129,23 @@ const Grid: React.FC = () => {
     init();
     animate();
 
-    window.addEventListener("resize", handleResize, { passive: true });
-    window.addEventListener("orientationchange", handleResize, {
-      passive: true,
-    });
-
     return () => {
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
-
-      if (rendererRef.current) {
-        rendererRef.current.dispose();
-        const canvas = rendererRef.current.domElement;
-        if (canvas && canvas.parentNode) {
-          canvas.parentNode.removeChild(canvas);
-        }
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      if (renderer) {
+        renderer.dispose();
+        // Clean up geometries and materials
+        scene.traverse((object) => {
+          if (object instanceof THREE.Mesh) {
+            object.geometry.dispose();
+            if (object.material instanceof THREE.Material) {
+              object.material.dispose();
+            } else if (Array.isArray(object.material)) {
+              object.material.forEach((material) => material.dispose());
+            }
+          }
+        });
       }
-
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("orientationchange", handleResize);
+      window.removeEventListener("resize", onWindowResize);
     };
   }, []);
 
