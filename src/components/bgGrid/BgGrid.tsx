@@ -22,58 +22,63 @@ const Grid: React.FC = () => {
   const mountRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    if (!mountRef.current) return;
+    let scene: THREE.Scene;
+    let camera: THREE.PerspectiveCamera;
+    let renderer: THREE.WebGLRenderer;
+    let clock: THREE.Clock;
+    let gridGroup: THREE.Group;
 
-    // Scene, Camera, Renderer
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(FOG_COLOR, FOG_NEAR, FOG_FAR);
+    function init() {
+      if (!mountRef.current) return;
 
-    const camera = new THREE.PerspectiveCamera(
-      CAMERA_FOV,
-      window.innerWidth / window.innerHeight,
-      CAMERA_NEAR,
-      CAMERA_FAR
-    );
-    camera.position.z = CAMERA_INITIAL_Z;
+      scene = new THREE.Scene();
+      scene.fog = new THREE.Fog(FOG_COLOR, FOG_NEAR, FOG_FAR);
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      canvas: mountRef.current,
-    });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.domElement.style.width = "100%";
-    renderer.domElement.style.height = "100%";
+      const aspect = window.innerWidth / window.innerHeight;
+      camera = new THREE.PerspectiveCamera(
+        CAMERA_FOV,
+        aspect,
+        CAMERA_NEAR,
+        CAMERA_FAR
+      );
+      camera.position.z = CAMERA_INITIAL_Z;
 
-    // Grid
-    const gridHelper = new THREE.GridHelper(
-      GRID_SIZE,
-      GRID_DIVISIONS,
-      GRID_COLOR,
-      GRID_COLOR
-    );
-    (gridHelper.material as THREE.Material).opacity = GRID_OPACITY;
-    (gridHelper.material as THREE.Material).transparent = true;
-    gridHelper.rotation.x = Math.PI / 2;
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        canvas: mountRef.current,
+      });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
 
-    const gridGroup = new THREE.Group();
-    gridGroup.add(gridHelper);
-    scene.add(gridGroup);
+      const gridHelper = new THREE.GridHelper(
+        GRID_SIZE,
+        GRID_DIVISIONS,
+        GRID_COLOR,
+        GRID_COLOR
+      );
+      (gridHelper.material as THREE.Material).opacity = GRID_OPACITY;
+      (gridHelper.material as THREE.Material).transparent = true;
+      gridHelper.rotation.x = Math.PI / 2;
 
-    const clock = new THREE.Clock();
+      gridGroup = new THREE.Group();
+      gridGroup.add(gridHelper);
+      scene.add(gridGroup);
 
-    // Resize handler
-    const onWindowResize = () => {
+      clock = new THREE.Clock();
+
+      window.addEventListener("resize", onWindowResize, false);
+    }
+
+    function onWindowResize() {
+      if (!camera || !renderer) return;
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.domElement.style.width = "100%";
-      renderer.domElement.style.height = "100%";
-    };
-    window.addEventListener("resize", onWindowResize);
+    }
 
-    // Animation loop
-    const animate = () => {
+    function animate() {
+      if (!renderer || !scene || !camera || !clock || !gridGroup) return;
+
       requestAnimationFrame(animate);
 
       const elapsedTime = clock.getElapsedTime();
@@ -83,12 +88,13 @@ const Grid: React.FC = () => {
       gridGroup.rotation.y = currentAngle;
 
       renderer.render(scene, camera);
-    };
+    }
+
+    init();
     animate();
 
-    // Cleanup
     return () => {
-      renderer.dispose();
+      if (renderer) renderer.dispose();
       window.removeEventListener("resize", onWindowResize);
     };
   }, []);

@@ -17,11 +17,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
-
 html {
   font-size: clamp(16px, 1.5vw, 32px);
 }
@@ -30,6 +25,7 @@ body {
   background-color: #000;
   color: #fff;
   font-family: "Manrope", sans-serif;
+  position: relative;
 }
 
 header {
