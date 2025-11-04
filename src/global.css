@@ -17,6 +17,15 @@
   box-sizing: border-box;
 }
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
 html {
   font-size: clamp(16px, 1.5vw, 32px);
 }
