@@ -5,22 +5,20 @@ const projectCards = [
   {
     title: "CarStat",
     link: "https://github.com/nihad-az/car-stat",
+    website: "https://carstat.net/",
     description: `
-      CarStat is a web app designed for car enthusiasts who enjoy comparing vehicles.
-      It's currently powered by a mock API, but integration with a real API is in progress.
-      The app is built with Next.js and optimized for SEO, with Tailwind CSS providing the styling framework.
-      Users can perform both single comparisons and bulk comparisons of cars, making it easy to explore performance stats, design features, and technical specifications. A customizable single comparison calculator also allows users to adjust criteria based on personal preferences, offering a tailored comparison experience.
+      CarStat is a web app designed for car enthusiasts who enjoy comparing vehicles. It's currently powered by a mock API, but integration with a real API is in progress. The app is built with Next.js and optimized for SEO, with Tailwind CSS providing the styling framework. Users can perform both single comparisons and bulk comparisons of cars, making it easy to explore performance stats, design features, and technical specifications. A customizable single comparison calculator also allows users to adjust criteria based on personal preferences, offering a tailored comparison experience.
     `,
     alt: "Github icon",
     image: "/icons/github-icon.svg",
     aboveFold: true,
   },
-     {
+  {
     title: "SteamScope",
     link: "https://github.com/nihad-az/",
+    website: "https://steamscope.xyz/",
     description: `
-      SteamScope is a web app developed under Nightcall Studio, designed to help gamers track Steam game prices and receive instant sale notifications. Built with Next.js, TypeScript, and styled with Tailwind CSS, the app emphasizes SEO optimization and a smooth, responsive interface. 
-      Beyond sale alerts and personalized watchlists, SteamScope includes tools to track how much money a user has spent on Steam and a value-per-price calculator to evaluate the worth of their game library. It also provides historical price trends and bulk game comparisons, making it a powerful utility for dedicated gamers.
+      SteamScope is a web app developed under Nightcall Studio, designed to help gamers track Steam game prices and receive instant sale notifications. Built with Next.js, TypeScript, and styled with Tailwind CSS, the app emphasizes SEO optimization and a smooth, responsive interface. Beyond sale alerts and personalized watchlists, SteamScope includes tools to track how much money a user has spent on Steam and a value-per-price calculator to evaluate the worth of their game library. It also provides historical price trends and bulk game comparisons, making it a powerful utility for dedicated gamers.
     `,
     alt: "Github icon",
     image: "/icons/github-icon.svg",
@@ -29,28 +27,35 @@ const projectCards = [
   {
     title: "Venturas",
     link: "https://github.com/nihad-az/",
+    website: null,
     description: `
-      Venturas is a digital adaptation of the classic board game Las Vegas. The project will feature user registration built with Next.js and a backend powered by MongoDB to securely store player data.
-      This game is planned as a future release under Nightcall Studio, a development team I've founded on GitHub. The goal is to deliver a fun, competitive multiplayer experience while showcasing scalable backend integration and modern web technologies.
+     Venturas is a digital adaptation of the classic board game Las Vegas. The project will feature user registration built with Next.js and a backend powered by MongoDB to securely store player data. This game is planned as a future release under Nightcall Studio, a development team I've founded on GitHub. The goal is to deliver a fun, competitive multiplayer experience while showcasing scalable backend integration and modern web technologies.
     `,
     alt: "Github icon",
     image: "/icons/github-icon.svg",
     aboveFold: false,
   },
 ];
----
 
+---
 <section id="projects" class="project-card-container">
   {projectCards.map((card) => (
     <div class="project-card">
       <div class="project-card-header">
-        {card.title === "CarStat" ? (
-          <a href="https://carstat.net/" target="_blank" rel="noopener noreferrer" class="project-title-link">
+
+        {card.website ? (
+          <a
+            href={card.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-title-link"
+          >
             <p>{card.title}</p>
           </a>
         ) : (
           <p>{card.title}</p>
         )}
+
         <a href={card.link} target="_blank" rel="noopener noreferrer">
           <img
             src={card.image}
@@ -59,6 +64,7 @@ const projectCards = [
           />
         </a>
       </div>
+
       <p class="project-card-description">{card.description}</p>
     </div>
   ))}
