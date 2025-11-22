@@ -18,8 +18,11 @@
   box-sizing: border-box;
 }
 
-.background-canvas {
-  height: calc(var(--vh) * 100);
+#bg-root {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 html,
