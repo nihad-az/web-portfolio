@@ -1,6 +1,7 @@
 :root {
   --global--horizontal--padding: clamp(1.75rem, 3vw, 30rem);
   --global--vertical--padding: clamp(1.5rem, 1vw, 2rem);
+  --vh: 1vh;
 }
 
 @font-face {
@@ -15,6 +16,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.background-canvas {
+  height: calc(var(--vh) * 100);
+}
+
+html,
+body {
+  overscroll-behavior: none;
 }
 
 html {
