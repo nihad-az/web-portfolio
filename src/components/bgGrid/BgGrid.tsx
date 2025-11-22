@@ -121,16 +121,20 @@ export default function BgGrid() {
     const resize = (): void => {
       const w = window.innerWidth;
 
-      const cssVh = getCssVh();
+      // Use CSS variable --vh
+      const cssVh = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue("--vh") ||
+          "0"
+      );
       const h = cssVh ? Math.round(cssVh * 100) : window.innerHeight;
 
-      if (Math.abs(h - lastHeight) < HEIGHT_THRESHOLD_PX) return;
+      // Only update if width changes OR height changes > threshold
+      if (w === camera.aspect * h && Math.abs(h - lastHeight) < 100) return;
 
       lastHeight = h;
 
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(w, h, false);
-
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
     };
