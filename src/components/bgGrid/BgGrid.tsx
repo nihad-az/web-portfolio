@@ -1,155 +1,114 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import "./bgGrid.css";
 
-const FOG_COLOR = 0x000000;
-const FOG_NEAR = 20;
-const FOG_FAR = 100;
-const CAMERA_FOV = 75;
-const CAMERA_NEAR = 0.1;
-const CAMERA_FAR = 500;
-const CAMERA_INITIAL_Z = 10;
-
-const GRID_SIZE = 500;
-const GRID_DIVISIONS = 250;
-const GRID_COLOR = 0x800080;
-const GRID_OPACITY = 1;
-
-const ROTATION_SPEED_FACTOR = 0.15;
-const MAX_ROTATION_ANGLE = Math.PI * (65 / 180);
-
-const Grid: React.FC = () => {
-  const mountRef = useRef<HTMLCanvasElement | null>(null);
+export default function SpaceBackground() {
+  const mountRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    let scene: THREE.Scene;
-    let camera: THREE.PerspectiveCamera;
-    let renderer: THREE.WebGLRenderer;
-    let clock: THREE.Clock;
-    let gridGroup: THREE.Group;
-    let animationFrameId: number;
+    if (!mountRef.current) return;
 
-    const init = () => {
-      if (!mountRef.current) return;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
-      // Scene
-      scene = new THREE.Scene();
-      scene.fog = new THREE.Fog(FOG_COLOR, FOG_NEAR, FOG_FAR);
+    const scene = new THREE.Scene();
 
-      // Camera
-      camera = new THREE.PerspectiveCamera(
-        CAMERA_FOV,
-        window.innerWidth / window.innerHeight,
-        CAMERA_NEAR,
-        CAMERA_FAR
-      );
-      camera.position.z = CAMERA_INITIAL_Z;
+    const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 2000);
+    camera.position.z = 180;
 
-      // Renderer
-      renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        canvas: mountRef.current,
-        // Preserve drawing buffer can help on some devices
-        preserveDrawingBuffer: false,
-        powerPreference: "high-performance",
-      });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for performance
-      renderer.setSize(window.innerWidth, window.innerHeight);
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+    });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    mountRef.current.appendChild(renderer.domElement);
 
-      // Grid
-      const gridHelper = new THREE.GridHelper(
-        GRID_SIZE,
-        GRID_DIVISIONS,
-        GRID_COLOR,
-        GRID_COLOR
-      );
-      (gridHelper.material as THREE.Material).opacity = GRID_OPACITY;
-      (gridHelper.material as THREE.Material).transparent = true;
-      gridHelper.rotation.x = Math.PI / 2;
+    /* PARTICLES */
+    const particleCount = 4800;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
 
-      gridGroup = new THREE.Group();
-      gridGroup.add(gridHelper);
-      scene.add(gridGroup);
+    // New: softer color palette
+    const primary = new THREE.Color("#902BA9"); // your card color
+    const darker = new THREE.Color("#1d0520"); // deeper subtle purple
+    const greyish = new THREE.Color("#0b0b0d"); // space black/grey blend
 
-      // Clock
-      clock = new THREE.Clock();
+    for (let i = 0; i < particleCount; i++) {
+      // spherical spread
+      const r = 350 * Math.cbrt(Math.random());
+      const theta = Math.random() * 2 * Math.PI;
+      const phi = Math.acos(2 * Math.random() - 1);
 
-      // Resize handler
-      window.addEventListener("resize", onWindowResize, false);
+      const x = r * Math.sin(phi) * Math.cos(theta);
+      const y = r * Math.sin(phi) * Math.sin(theta);
+      const z = r * Math.cos(phi);
 
-      // Prevent touch events from interfering
-      preventTouchInterference();
-    };
+      positions[i * 3] = x;
+      positions[i * 3 + 1] = y;
+      positions[i * 3 + 2] = z;
 
-    const preventTouchInterference = () => {
-      if (!mountRef.current) return;
+      // NEW: significantly reduced vibrance
+      const mix1 = Math.random() * 0.25; // only 25% primary purple
+      const mix2 = Math.random() * 0.5; // blend with darker tones
 
-      const preventDefault = (e: Event) => {
-        e.preventDefault();
-      };
+      const color = primary.clone().lerp(darker, mix2).lerp(greyish, 0.5);
 
-      // Prevent various touch interactions
-      const events = [
-        "touchstart",
-        "touchmove",
-        "touchend",
-        "touchcancel",
-        "gesturestart",
-        "gesturechange",
-        "gestureend",
-      ];
+      colors[i * 3] = color.r;
+      colors[i * 3 + 1] = color.g;
+      colors[i * 3 + 2] = color.b;
+    }
 
-      events.forEach((event) => {
-        mountRef.current?.addEventListener(event, preventDefault, {
-          passive: false,
-        });
-      });
-    };
+    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
-    const onWindowResize = () => {
-      if (!camera || !renderer) return;
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
+    const material = new THREE.PointsMaterial({
+      size: 2.2,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.7, // lowered from 0.9 → softer glow
+    });
 
-    const animate = () => {
-      if (!renderer || !scene || !camera || !clock || !gridGroup) return;
+    const particles = new THREE.Points(geometry, material);
+    scene.add(particles);
 
-      animationFrameId = requestAnimationFrame(animate);
+    /* ANIMATION */
+    let t = 0;
+    function animate() {
+      // much slower progression
+      t += 0.0015; // was 0.0032
 
-      const elapsedTime = clock.getElapsedTime();
-      const currentAngle =
-        MAX_ROTATION_ANGLE * Math.sin(elapsedTime * ROTATION_SPEED_FACTOR);
-      gridGroup.rotation.y = currentAngle;
+      // significantly slower rotation
+      particles.rotation.y += 0.0007; // was 0.0016
+      particles.rotation.x += 0.0004; // was 0.0009
+
+      // very slow camera drift
+      camera.position.x = Math.sin(t * 0.25) * 10; // was * 0.35, amplitude 14
+      camera.position.y = Math.cos(t * 0.3) * 7; // was * 0.42, amplitude 10
+
+      camera.lookAt(scene.position);
 
       renderer.render(scene, camera);
-    };
-
-    init();
+      requestAnimationFrame(animate);
+    }
     animate();
 
+    const handleResize = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+
+    window.addEventListener("resize", handleResize);
+
     return () => {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-      if (renderer) {
-        renderer.dispose();
-        // Clean up geometries and materials
-        scene.traverse((object) => {
-          if (object instanceof THREE.Mesh) {
-            object.geometry.dispose();
-            if (object.material instanceof THREE.Material) {
-              object.material.dispose();
-            } else if (Array.isArray(object.material)) {
-              object.material.forEach((material) => material.dispose());
-            }
-          }
-        });
-      }
-      window.removeEventListener("resize", onWindowResize);
+      window.removeEventListener("resize", handleResize);
+      mountRef.current?.removeChild(renderer.domElement);
     };
   }, []);
 
-  return <canvas id="bg" ref={mountRef} />;
-};
-
-export default Grid;
+  return <div ref={mountRef} className="space-bg" />;
+}

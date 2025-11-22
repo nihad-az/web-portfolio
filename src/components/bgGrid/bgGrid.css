@@ -1,29 +1,17 @@
-canvas#bg {
+.space-bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
 
-  /* Disable all interactions */
+  z-index: -10;
   pointer-events: none;
-  touch-action: none;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 
-  /* Prevent scrolling effects */
-  overscroll-behavior: none;
-  -webkit-overflow-scrolling: auto;
-
-  /* Prevent highlighting and context menu */
-  -webkit-tap-highlight-color: transparent;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -ms-user-drag: none;
+  background: radial-gradient(
+    circle at center,
+    #000000 0%,
+    #050005 40%,
+    #000000 100%
+  );
 }

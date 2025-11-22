@@ -17,14 +17,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  overflow: hidden;
-  height: 100%;
-  position: fixed;
-  width: 100%;
-}
-
 html {
   font-size: clamp(16px, 1.5vw, 32px);
 }
