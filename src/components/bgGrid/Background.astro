@@ -7,24 +7,20 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  height: -webkit-fill-available; /* Safari fix for mobile */
+  height: -webkit-fill-available;
   min-height: 100vh;
   z-index: -1;
   pointer-events: none;
 
-  /* Base background color that covers everything */
   background-color: #0a0818;
-  
-  /* Fallback solid color for Safari */
   background: #0a0818;
   
+  /* Default star density (desktop) */
   background-image: 
-    /* Large stars */
     radial-gradient(circle at 15% 25%, #8a2be2 1px, transparent 1px),
     radial-gradient(circle at 85% 45%, #9400d3 1px, transparent 1px),
     radial-gradient(circle at 45% 75%, #4b0082 1px, transparent 1px),
     radial-gradient(circle at 75% 15%, #8a2be2 1px, transparent 1px),
-    /* Medium stars */
     radial-gradient(circle at 25% 60%, #9370db 1px, transparent 1px),
     radial-gradient(circle at 60% 35%, #da70d6 1px, transparent 1px),
     radial-gradient(circle at 35% 85%, #8a2be2 1px, transparent 1px);
@@ -38,11 +34,8 @@
     180px 180px,
     200px 200px;
   
-  /* Ensure background covers entire area in Safari */
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-attachment: fixed;
-  -webkit-background-size: cover;
-  background-size: cover;
 }
 
 .pixel-background::before {
@@ -52,32 +45,63 @@
   left: 0;
   width: 100%;
   height: 100%;
-  height: -webkit-fill-available; /* Safari mobile fix */
+  height: -webkit-fill-available;
+  min-height: 100vh;
   
   background-image: 
     linear-gradient(90deg, transparent 6px, rgba(138, 43, 226, 0.8) 6px, transparent 7px),
     linear-gradient(transparent 6px, rgba(138, 43, 226, 0.8) 6px, transparent 7px);
   background-size: 30px 30px; 
+  background-repeat: repeat;
   
-  mask: radial-gradient(ellipse at center 60%, transparent 45%, black 75%);
-  -webkit-mask: radial-gradient(ellipse at center 60%, transparent 45%, black 75%);
+  mask: radial-gradient(ellipse at center 55%, transparent 40%, black 85%);
+  -webkit-mask: radial-gradient(ellipse at center 55%, transparent 40%, black 85%);
   
   image-rendering: pixelated;
   -webkit-image-rendering: pixelated;
 }
 
-/* Additional Safari-specific fixes */
+/* Mobile version with reduced density */
+@media (max-width: 768px) {
+  .pixel-background {
+    background-image: 
+      /* Reduced to 6 layers instead of 9 */
+      radial-gradient(circle at 10px 10px, #8a2be2 1px, transparent 1px),
+      radial-gradient(circle at 40px 40px, #9400d3 1px, transparent 1px),
+      radial-gradient(circle at 70px 70px, #4b0082 1px, transparent 1px),
+      radial-gradient(circle at 25px 60px, #9370db 1px, transparent 1px),
+      radial-gradient(circle at 60px 25px, #da70d6 1px, transparent 1px),
+      radial-gradient(circle at 45px 80px, #8a2be2 1px, transparent 1px);
+    
+    /* Larger background sizes for less density */
+    background-size: 
+      150px 150px,  /* Increased from 100px */
+      150px 150px,
+      150px 150px,
+      150px 150px,
+      150px 150px,
+      150px 150px;
+    
+    background-repeat: repeat;
+  }
+}
+
+/* Safari-specific fixes */
 @supports (-webkit-touch-callout: none) {
   .pixel-background {
     height: -webkit-fill-available;
     min-height: -webkit-fill-available;
   }
+  .pixel-background::before {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+  }
 }
 
-/* Ensure body and html also have the background color */
 html, body {
   background-color: #0a0818;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 </style>
