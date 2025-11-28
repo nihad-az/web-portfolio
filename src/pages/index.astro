@@ -1,6 +1,6 @@
 ---
 import "../global.css";
-import BgGrid from "../components/bgGrid/BgGrid.tsx";
+import Background from "../components/bgGrid/Background.astro";
 import Header from "../components/header/Header.astro";
 import Introduction from "../components/introduction/Introduction.astro";
 import TechnologyCards from "../components/technology/TechnologyCards.astro"
@@ -38,22 +38,11 @@ import Project from "../components/project/Project.astro"
     }
     </script>
 
-    <script>
-  const updateVh = () => {
-    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
-  };
-
-  updateVh();
-  window.addEventListener('resize', updateVh);
-  </script>
-
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
 
   <body>
-    <div id="bg-root">
-    <BgGrid client:load />
-    </div>
+    <Background />
     <Header />
     <main>
         <Introduction />

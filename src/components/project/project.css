@@ -14,38 +14,40 @@
   padding: 0.875rem;
 
   border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
   );
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
 
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.25);
 
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
 
   transform: translateZ(0);
   transition: box-shadow 0.35s ease, border-color 0.35s ease,
-    background 0.35s ease;
+    background 0.35s ease, backdrop-filter 0.35s ease;
 }
 
 .project-card:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 12px 25px rgba(0, 0, 0, 0.55);
-  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 6px 18px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.16);
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.12),
-    rgba(255, 255, 255, 0.06)
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.025)
   );
+  backdrop-filter: blur(12px) saturate(170%);
+  -webkit-backdrop-filter: blur(12px) saturate(170%);
 }
 
 .project-title-link {
@@ -78,5 +80,5 @@
 
 .project-card-description {
   font-size: 0.6rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
 }
